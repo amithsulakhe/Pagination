@@ -3,7 +3,7 @@
   padding: 0;
   box-sizing: border-box;
   font-weight: bolder;
-  font-size: 17px;
+  font-size: 15px;
   font-family: 'Courier New', Courier, monospace;
 }
 .nav_bar{
@@ -89,25 +89,50 @@ span{
   position: fixed;
   bottom: 2%;
   width: 100%;
-  display: flex;
-  justify-content: center;
+  padding: 0px 31%;
+
 }
+.btn-parent{
+  overflow: hidden;
+  display: flex;
+  position: relative;
+  height: 50px;
+
+}
+.btn-child{
+  display: flex;
+  position: relative;
+  height: 50px;
+    /* transform: translateX(-125px); -48px */
+}
+
 .btns .btn{
-  padding: 15px;
+  width: 50px;
+  height: 100%;
   border: none;
   margin-right: 2px;
   cursor: pointer;
   
 }
+.btn-right{
+  position: absolute;
+  right: 0;
+  top: 0;
+}
 .btns .btn-left,.btns .btn-right{
   background-color: #017aff;
-  border-radius: 50%;
-  padding: 15px;
   border: none;
   cursor: pointer;
   margin-right: 2px;
   color: #fff;
+  width: 50px;
+  height: 100%;
   
+}
+.btn-left{
+  position: absolute;
+  left: 0;
+  z-index:1;
 }
 .btns .btn-left:hover,.btns .btn-right:hover{
   background-color: #3781d0;
@@ -134,5 +159,9 @@ span{
   }
   .maincard{
     margin: 30% auto;
+  }
+  .btns{
+  padding: 0px 18%;
+
   }
 }
