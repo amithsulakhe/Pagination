@@ -49,7 +49,7 @@ const Header = () => {
                 </button>
               </li>
             </ul>
-            <form className="d-flex" role="search">
+            <div className="d-flex" role="search">
               <input
                 value={searchName}
                 onChange={(e) => {
@@ -64,7 +64,7 @@ const Header = () => {
               />
               <button
                 className="btn btn-outline-success"
-                type="submit"
+              
                 onClick={() => {
                   let data = filterdata(searchName);
                   setdata(data);
@@ -72,7 +72,7 @@ const Header = () => {
               >
                 Search
               </button>
-            </form>
+            </div>
           </div>
         </div>
       </nav>
