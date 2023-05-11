@@ -144,7 +144,8 @@ text-transform: uppercase;
     font-size: 15px !important;
   }
   .pagination_card{
-    height: 150px;
+    height: 200px;
+
   }
   .full_name img{
     width: 65px;
@@ -157,6 +158,10 @@ text-transform: uppercase;
   }
   .btns{
   padding: 0px 18%;
+
+  }
+  .maincard{
+  margin: 20% auto;
 
   }
 }
