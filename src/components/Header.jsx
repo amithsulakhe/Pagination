@@ -2,6 +2,7 @@ import React, { useContext, useRef } from "react";
 import { useState } from "react";
 import { Jsondata } from "./Jsondata";
 import { Usecontext } from "./Context";
+import Filters from "./Filters";
 function filterdata(value) {
   let filteredata = Jsondata.filter((data) => {
     const fullName = data?.first_name + " " + data?.last_name;
@@ -10,15 +11,9 @@ function filterdata(value) {
   return filteredata;
 }
 const Header = () => {
-  const myref = useRef();
-  const [style, setstyle] = useState({});
   const [searchName, setsearchName] = useState("");
   const { setdata } = useContext(Usecontext);
-  const handlecheck = (event) => {
-    const { name, checked } = event.target;
-    setstyle({ ...style, [name]: checked });
-    console.log(style);
-  };
+ 
   return (
     <>
       <nav
@@ -82,98 +77,7 @@ const Header = () => {
         </div>
       </nav>
 
-      <div
-        className="offcanvas offcanvas-end"
-        tabIndex="-1"
-        id="offcanvasRight"
-        aria-labelledby="offcanvasRightLabel"
-      >
-        <form action="" className="offcanvas-body">
-          <div className="filters">
-            <h3>Filter BY:</h3>
-          </div>
-          <div className="filtering filter-gender">
-            <b>Gender</b>
-            <div className="filtering-category gender-category">
-              {[...new Set(Jsondata.map((d) => d.gender))].map((ele, i) => (
-                <label
-                  key={i}
-                  className={
-                    style[`${ele}`]
-                      ? "active  btn btn-outline-secondary"
-                      : `gender  btn btn-outline-secondary`
-                  }
-                  htmlFor={ele}
-                >
-                  {ele}
-                  <input
-                    name={ele}
-                    id={ele}
-                    type="checkbox"
-                    style={{ visibility: "hidden", position: "absolute" }}
-                    onChange={handlecheck}
-                  />
-                </label>
-              ))}
-            </div>
-          </div>
-          <div className="filtering">
-            <b>Availability</b>
-            <div className="filtering-category">
-              {[...new Set(Jsondata.map((d) => d.available))].map((ele, i) => (
-                <label
-                  key={i}
-                  className={
-                    style[`${ele === true ? "YES" : "NO"}`]
-                      ? "active  btn btn-outline-secondary"
-                      : `gender  btn btn-outline-secondary`
-                  }
-                  htmlFor={ele === true ? "YES" : "NO"}
-                >
-                  {ele === true ? "YES" : "NO"}
-                  <input
-                    name={ele === true ? "YES" : "NO"}
-                    id={ele === true ? "YES" : "NO"}
-                    type="checkbox"
-                    style={{ visibility: "hidden", position: "absolute" }}
-                    onChange={handlecheck}
-                  />
-                </label>
-              ))}
-            </div>
-          </div>
-          <div className="filtering filter-gender">
-            <b>Domain</b>
-            <div className="filtering-category gender-category">
-              {[...new Set(Jsondata.map((d) => d.domain))].map((ele, i) => (
-                <label
-                  key={i}
-                  className={
-                    style[`${ele}`]
-                      ? "active  btn btn-outline-secondary"
-                      : `gender  btn btn-outline-secondary`
-                  }
-                  htmlFor={ele}
-                >
-                  {ele}
-                  <input
-                    style={{ visibility: "hidden", position: "absolute" }}
-                    name={ele}
-                    onChange={handlecheck}
-                    id={ele}
-                    type="checkbox"
-                  />
-                </label>
-              ))}
-            </div>
-          </div>
-          <div className="submit-form">
-            <button type="submit" className="btn btn-outline-success">
-              Show Result
-            </button>
-          </div>
-        </form>
-      </div>
+   <Filters />
     </>
   );
 };
