@@ -1,0 +1,138 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-weight: bolder;
+  font-size: 17px;
+  font-family: 'Courier New', Courier, monospace;
+}
+.nav_bar{
+  width: 100%;
+  position: fixed;
+  top: 0;
+  background: #573d7d;
+  display: flex;
+  justify-content: space-around;
+  padding: 20px;
+  align-items: center;
+}
+.input_bar{
+  width: 50%;
+}
+.input_bar input{
+  padding: 10px;
+  border-top-left-radius: 20px;
+  width: 80%;
+  border: none;
+  border-bottom-left-radius: 20px;
+  outline: none;
+font-size: 15px;
+}
+.input_bar button{
+  padding: 11px;
+  border: none;
+  border-bottom-right-radius: 20px;
+  border-top-right-radius: 20px;
+  cursor: pointer;
+  background-color: rgb(36, 54, 54);
+  color: #fff;
+  font-size: 15px;
+  padding-right: 25px;
+
+}
+.pagination_card{
+  padding: 15px;
+  width: 300px;
+  align-items: center;
+  height: 300px;
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  border: 1px solid #d3d5df;
+  box-shadow: 0 4px 7px #d3d5df;
+  cursor: pointer;
+}
+
+.maincard{
+  display: flex;
+  justify-content: space-around;
+  /* width: 101%; */
+  flex-wrap: wrap;
+  width: 95%;
+  margin: 12% auto;
+
+}
+
+.pagination_card .full_name{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  height: 80%;
+
+}
+.pagination_card .full_name img{
+  border: 2px solid;
+  border-radius: 50%;
+}
+.avatar_details{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+span{
+  font-weight: 400;
+}
+.btns{
+  position: fixed;
+  bottom: 2%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.btns .btn{
+  padding: 15px;
+  border: none;
+  margin-right: 2px;
+  cursor: pointer;
+  
+}
+.btns .btn-left,.btns .btn-right{
+  background-color: #017aff;
+  border-radius: 50%;
+  padding: 15px;
+  border: none;
+  cursor: pointer;
+  margin-right: 2px;
+  color: #fff;
+  
+}
+.btns .btn-left:hover,.btns .btn-right:hover{
+  background-color: #3781d0;
+
+}
+.btns .btn:hover{
+  background-color: #d3d5df;
+}
+@media screen and (max-width:600px) {
+  *{
+    font-size: 15px;
+  }
+  .pagination_card{
+    height: 150px;
+  }
+  .full_name img{
+    width: 65px;
+  }
+  .btns .btn-left,.btns .btn-right{
+    padding: 8px;
+  }
+  .btns .btn{
+    padding: 8px;
+  }
+  .maincard{
+    margin: 30% auto;
+  }
+}
