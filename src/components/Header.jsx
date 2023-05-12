@@ -4,6 +4,7 @@ import { Jsondata } from "./Jsondata";
 import { Usecontext } from "./Context";
 import { useSelector } from "react-redux";
 import Filters from "./Filters";
+
 function filterdata(value) {
   let filteredata = Jsondata.filter((data) => {
     const fullName = data?.first_name + " " + data?.last_name;
@@ -12,10 +13,11 @@ function filterdata(value) {
   return filteredata;
 }
 const Header = () => {
+
   const users=useSelector(store=>store.userSelected.UserSelected)
 console.log(users);
   const [searchName, setsearchName] = useState("");
-  const { setdata ,showCart,setshowCart} = useContext(Usecontext);
+  const { setdata ,showCart,setshowCart,FilterApply,setFilterApply}=useContext(Usecontext);
 
 const cartHandler=()=>{
   setshowCart(!showCart)
@@ -69,7 +71,7 @@ const cartHandler=()=>{
                 onChange={(e) => {
                   setsearchName(e.target.value);
                   let data = filterdata(searchName);
-                  setdata(data);
+                  setFilterApply(data);
                 }}
                 placeholder="Search by Name"
                 className="form-control me-2"
@@ -80,7 +82,7 @@ const cartHandler=()=>{
                 className="btn btn-outline-success"
                 onClick={() => {
                   let data = filterdata(searchName);
-                  setdata(data);
+                  setFilterApply(data);
                 }}
               >
                 Search

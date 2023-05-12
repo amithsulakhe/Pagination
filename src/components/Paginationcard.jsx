@@ -7,11 +7,11 @@ import { setFilter } from "./Reduxslice/StoreFilterData";
 import { addUser,removeUser } from "./Reduxslice/UserSelectedSlice";
 
 const Paginationcard = ({ count,showCart }) => {
+  const {FilterApply,setFilterApply}=useContext(Usecontext)
   const alreadyClickedUser = useSelector(
     (store) => store.userSelected.alreadyClickedUser
   );
   const dispatch = useDispatch();
-  const [FilterApply, setFilterApply] = useState([]);
   const [userSelected, setUserSelected] = useState({});
   const FilterItemsApplied = useSelector((store) => store.filter.FilterData);
   // console.log(FilterItemsApplied);

@@ -5,9 +5,10 @@ export   const Usecontext=createContext()
 const Context = ({children}) => {
   const [data, setdata] = useState(Jsondata);
   const [showCart, setshowCart] = useState(false)
+  const [FilterApply, setFilterApply] = useState([]);
 
   return (
-    <Usecontext.Provider value={{showCart,setshowCart, data,setdata}}>
+    <Usecontext.Provider value={{FilterApply,setFilterApply, showCart,setshowCart, data,setdata}}>
 {children}
     </Usecontext.Provider>
   )
