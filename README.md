@@ -30,3 +30,7 @@ npm run build
 # or
 yarn run build
 
+https://github.com/amithsulakhe/Pagination/assets/94635626/556e7806-3e2f-4e4a-98a8-5451b476a065
+
+
+
