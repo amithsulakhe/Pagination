@@ -19,7 +19,7 @@ const Paginationbtns = () => {
   return (
     <>
     {
-        !showCart? <Paginationcard count={count}/>:<CartComponent/>
+        !showCart? <Paginationcard showCart={showCart} count={count}/>:<CartComponent/>
 
     }
 

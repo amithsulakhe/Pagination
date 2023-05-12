@@ -7,18 +7,27 @@ const userSelect=createSlice({
         UserSelected:{
            selectedItems:[]
         },
+        alreadyClickedUser:{}
     },
     reducers:{
         addUser:(state,action)=>{
-            const {selectedUser}=action.payload
-            state.UserSelected.selectedItems.push(selectedUser)
-            // console.log(selectedUser);
+            const {selectedUser,userSelected}=action.payload
+            const existingUser = state.UserSelected.selectedItems.find((ele) => ele.first_name === selectedUser.first_name);
+            
+            if(existingUser===undefined){
+                state.UserSelected.selectedItems.push(selectedUser)
+            }
+            state.alreadyClickedUser=userSelected
+
         },
         removeUser:(state,action)=>{
-            const {selectedUser}=action.payload
+            const {selectedUser,userSelected}=action.payload
             state.UserSelected.selectedItems=state.UserSelected.selectedItems.filter((item)=>{
                 return item.first_name!==selectedUser.first_name
             })
+            state.alreadyClickedUser=userSelected
+
+
            
         }
     }
@@ -28,4 +37,4 @@ const userSelect=createSlice({
 
 
 export default userSelect.reducer
-export const {addUser,removeUser}=userSelect.actions
+export const {addUser,removeUser,pushedIntoSlected}=userSelect.actions

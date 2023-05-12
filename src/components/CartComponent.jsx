@@ -6,23 +6,33 @@ import { Usecontext } from './Context';
 import CartEmptyPage from './CartEmptyPage';
 export const CartComponent = () => {
     const users=useSelector(store=>store.userSelected.UserSelected)
+    const alreadyClickedUser=useSelector((store)=>store.userSelected.alreadyClickedUser)
     const [selectedUsers, setselectedUsers] = useState([])
     const {showCart,setshowCart}=useContext(Usecontext)
+    const [btnState,setBtnState]=useState({checkedUser:null,selectedUser:null})
     const dispatch=useDispatch()
-    const [removeUserSelected, setremoveuserSelected] = useState({})
-    console.log(users.selectedItems);
+    const [removeUserSelected, setremoveuserSelected] = useState(alreadyClickedUser)
+    console.log(removeUserSelected);
+    useEffect(()=>{
+      if(btnState.checkedUser!=null){
+        const selectedUser=btnState.selectedUser
+        const userSelected=removeUserSelected
+        if(btnState.checkedUser){ 
+          dispatch(addUser({selectedUser,userSelected}))
+        }else{
+          dispatch(removeUser({selectedUser,userSelected}))
+        }
+      }
+    },[removeUserSelected])
     useEffect(()=>{
 setselectedUsers(users.selectedItems)
     },[users])
-    const handleCheckboxer = (e, selectedUser) => {
-        const { name, checked } = e.target;
-        setremoveuserSelected({ ...removeUserSelected, [name]: checked })
-        if (!checked) {
-          dispatch(addUser({ selectedUser }));
-        } else {
-          dispatch(removeUser({ selectedUser }));
-        }
-      };
+    const handleCheckboxer = (e,selectedUser)=>{
+      const {name,checked}=e.target
+      setremoveuserSelected({...removeUserSelected,[name]:checked})
+      setBtnState({...btnState,checkedUser:checked,selectedUser:selectedUser})
+      
+    }
   return (
     <>
     {
@@ -57,16 +67,18 @@ setselectedUsers(users.selectedItems)
                    <label
                   
                      className={
-                       removeUserSelected[`${user.first_name+ index}`]
+                       removeUserSelected[`${user.first_name+ user.id}`]
                          ? "active btn btn-secondary"
                          : `gender btn`
                      }
-                     htmlFor={user.first_name+index}
+                     htmlFor={user.first_name+user.id}
                    >
                      Remove User
                      <input
-                       name={user.first_name+ index}
-                       id={user.first_name+index}
+                checked={removeUserSelected[`${user.first_name +user.id}`]}
+
+                       name={user.first_name+ user.id}
+                       id={user.first_name+user.id}
                        type="checkbox"
                        style={{ visibility: "hidden", position: "absolute" }}
                        onChange={(e)=>handleCheckboxer(e,user)}
@@ -77,7 +89,7 @@ setselectedUsers(users.selectedItems)
            }
           
           </div>
-          <button onClick={()=>setshowCart(!showCart)} type="button" class="goback btn btn-danger">Go back</button>
+          <button onClick={()=>setshowCart(!showCart)} type="button" className="goback btn btn-danger">Go back</button>
        
           </div>:<CartEmptyPage/>
     }

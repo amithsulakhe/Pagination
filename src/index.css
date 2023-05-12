@@ -171,12 +171,12 @@ text-transform: uppercase;
     left: 50%;
     top: 50%;
 }
-@media screen and (max-width:600px) {
+@media screen and (max-width:780px) {
   *{
     font-size: 15px !important;
   }
   .pagination_card{
-    height: 200px;
+    height: 220px;
 
   }
   .full_name img{
