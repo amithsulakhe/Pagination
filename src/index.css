@@ -138,7 +138,39 @@ text-transform: uppercase;
   display: flex;
   justify-content: center;
 }
-
+.btn,.btn:hover{
+    border-color: #6c757d;
+}
+.nav-item{
+  margin-right: 10px;
+}
+.cartemptypage{
+  background-image: url(https://img.freepik.com/premium-photo/empty-shopping-cart-outside-as-th-symbol-crisis-bad-economy_63762-6407.jpg?w=996);
+  margin-top: 3%;
+  height: 93vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.cart-items{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  width: 95%;
+  margin: 5% auto;
+}
+.cart-items-parent{
+  margin-top: 5%;
+}
+.goback{
+  position: fixed;
+    left: 50%;
+    top: 50%;
+}
 @media screen and (max-width:600px) {
   *{
     font-size: 15px !important;
@@ -164,4 +196,14 @@ text-transform: uppercase;
   margin: 20% auto;
 
   }
+  .cart-items {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    width: 95%;
+    margin: 25% auto;
+}
+.cart-items-parent{
+  margin-top: 25%;
+}
 }

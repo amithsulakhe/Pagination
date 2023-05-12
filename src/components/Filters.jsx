@@ -1,13 +1,22 @@
 import React from 'react'
 import { useState } from 'react';
 import { Jsondata } from './Jsondata'
+import { useDispatch } from 'react-redux';
+import { addFilters } from './Reduxslice/FIlterslice';
 const Filters = () => {
   const [style, setstyle] = useState({});
-
+const dispatch=useDispatch()
+const handlesubmit=(e)=>{
+    e.preventDefault()
+    const formData = new FormData(e.target);
+    const selectedfilter=Object.fromEntries(formData.entries())
+    dispatch(addFilters({selectedfilter}))
+    console.log(selectedfilter);
+}
     const handlecheck = (event) => {
         const { name, checked } = event.target;
         setstyle({ ...style, [name]: checked });
-        console.log(style);
+    
       };
   return (
     <div
@@ -16,10 +25,10 @@ const Filters = () => {
     id="offcanvasRight"
     aria-labelledby="offcanvasRightLabel"
   >
-    <form action="" className="offcanvas-body">
+    <form onSubmit={handlesubmit} action="" className="offcanvas-body">
       <div className="filters d-flex justify-content-between">
         <h3>Filter BY:</h3>
-        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        <button type="button" className="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
       </div>
       <div className="filtering filter-gender">
         <b>Gender</b>
@@ -28,15 +37,15 @@ const Filters = () => {
             <label
               key={i}
               className={
-                style[`${ele}`]
-                  ? "active  btn btn-outline-secondary"
-                  : `gender  btn btn-outline-secondary`
+                style[`${"gender+"+ele}`]
+                  ? "active btn btn-secondary"
+                  : `gender btn`
               }
               htmlFor={ele}
             >
               {ele}
               <input
-                name={ele}
+                name={"gender+"+ele}
                 id={ele}
                 type="checkbox"
                 style={{ visibility: "hidden", position: "absolute" }}
@@ -53,15 +62,15 @@ const Filters = () => {
             <label
               key={i}
               className={
-                style[`${ele === true ? "YES" : "NO"}`]
-                  ? "active  btn btn-outline-secondary"
-                  : `gender  btn btn-outline-secondary`
+                style[ele === true ? "availability+YES" : "availability+NO"]
+                ? "active btn btn-secondary"
+                  : `gender btn`
               }
               htmlFor={ele === true ? "YES" : "NO"}
             >
               {ele === true ? "YES" : "NO"}
               <input
-                name={ele === true ? "YES" : "NO"}
+                name={ele === true ? "availability+YES" : "availability+NO"}
                 id={ele === true ? "YES" : "NO"}
                 type="checkbox"
                 style={{ visibility: "hidden", position: "absolute" }}
@@ -78,16 +87,16 @@ const Filters = () => {
             <label
               key={i}
               className={
-                style[`${ele}`]
-                  ? "active  btn btn-outline-secondary"
-                  : `gender  btn btn-outline-secondary`
+                style[`${"domain+"+ele}`]
+                ? "active btn btn-secondary"
+                  : `gender btn`
               }
               htmlFor={ele}
             >
               {ele}
               <input
                 style={{ visibility: "hidden", position: "absolute" }}
-                name={ele}
+                name={"domain+"+ele}
                 onChange={handlecheck}
                 id={ele}
                 type="checkbox"
@@ -98,11 +107,8 @@ const Filters = () => {
       </div>
       <div className="submit-form d-flex justify-content-between">
      
-        <button type="button" class="btn btn-outline-danger" data-bs-dismiss="offcanvas" aria-label="Close">Cancel</button>
-
-        <button type="submit" className="btn btn-outline-success">
-          Show Result
-        </button>
+        <button type="button" className="btn btn-outline-danger" data-bs-dismiss="offcanvas" aria-label="Close">Cancel</button>
+        <button type="submit" className="btn btn-outline-success" data-bs-dismiss="offcanvas" aria-label="Close">  Show Result</button>
       </div>
     </form>
   </div>

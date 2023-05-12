@@ -2,6 +2,7 @@ import React, { useContext, useRef } from "react";
 import { useState } from "react";
 import { Jsondata } from "./Jsondata";
 import { Usecontext } from "./Context";
+import { useSelector } from "react-redux";
 import Filters from "./Filters";
 function filterdata(value) {
   let filteredata = Jsondata.filter((data) => {
@@ -11,14 +12,18 @@ function filterdata(value) {
   return filteredata;
 }
 const Header = () => {
+  const users=useSelector(store=>store.userSelected.UserSelected)
+console.log(users);
   const [searchName, setsearchName] = useState("");
-  const { setdata } = useContext(Usecontext);
- 
+  const { setdata ,showCart,setshowCart} = useContext(Usecontext);
+
+const cartHandler=()=>{
+  setshowCart(!showCart)
+}
   return (
     <>
       <nav
-        className="navbar navbar-expand-lg bg-info-subtle
-"
+        className="navbar navbar-expand-lg bg-info-subtle"
       >
         <div className="container-fluid">
           <a className="navbar-brand" href="#">
@@ -38,15 +43,24 @@ const Header = () => {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <button
-                  className="btn fw-bold "
+                <span
+                  className=" fw-bold "
                   type="button"
                   data-bs-toggle="offcanvas"
                   data-bs-target="#offcanvasRight"
                   aria-controls="offcanvasRight"
                 >
                   Filters
-                </button>
+                </span>
+              </li>
+              <li className="nav-item">
+                <span onClick={cartHandler}
+                  className=" fw-bold "
+                  type="button"
+                
+                >
+                  Cart-{users.selectedItems.length}
+                </span>
               </li>
             </ul>
             <div className="d-flex" role="search">
@@ -64,7 +78,6 @@ const Header = () => {
               />
               <button
                 className="btn btn-outline-success"
-              
                 onClick={() => {
                   let data = filterdata(searchName);
                   setdata(data);
@@ -77,7 +90,7 @@ const Header = () => {
         </div>
       </nav>
 
-   <Filters />
+      <Filters />
     </>
   );
 };

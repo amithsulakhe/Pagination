@@ -1,9 +1,12 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { useState } from 'react'
 import Paginationcard from './Paginationcard'
 import { Jsondata } from './Jsondata'
+import { Usecontext } from './Context'
+import { CartComponent } from './CartComponent'
 const Paginationbtns = () => {
     const [count, setcount] = useState(0)
+    const {showCart}=useContext(Usecontext)
     const [transformbtn, settransformbtn] = useState(50)
     const handleright=()=>{
         settransformbtn((prev)=>prev-50)
@@ -15,7 +18,10 @@ const Paginationbtns = () => {
 
   return (
     <>
-    <Paginationcard count={count}/>
+    {
+        !showCart? <Paginationcard count={count}/>:<CartComponent/>
+
+    }
 
     <div className="btns">
         <div className="btn-parent">

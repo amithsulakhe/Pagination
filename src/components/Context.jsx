@@ -4,9 +4,10 @@ import { useState } from 'react'
 export   const Usecontext=createContext()
 const Context = ({children}) => {
   const [data, setdata] = useState(Jsondata);
+  const [showCart, setshowCart] = useState(false)
 
   return (
-    <Usecontext.Provider value={{data,setdata}}>
+    <Usecontext.Provider value={{showCart,setshowCart, data,setdata}}>
 {children}
     </Usecontext.Provider>
   )
