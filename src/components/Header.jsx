@@ -5,15 +5,17 @@ import { Usecontext } from "./Context";
 import { useSelector } from "react-redux";
 import Filters from "./Filters";
 
-function filterdata(value) {
-  let filteredata = Jsondata.filter((data) => {
-    const fullName = data?.first_name + " " + data?.last_name;
-    return fullName.toLowerCase().includes(value.toLowerCase());
-  });
-  return filteredata;
-}
-const Header = () => {
 
+const Header = () => {
+  const StoreFilterItems = useSelector((store) => store.storefilter.storeItems);
+  function filterdata(value) {
+  
+    let filteredata = StoreFilterItems.filter((data) => {
+      const fullName = data?.first_name + " " + data?.last_name;
+      return fullName.toLowerCase().includes(value.toLowerCase());
+    });
+    return filteredata;
+  }
   const users=useSelector(store=>store.userSelected.UserSelected)
 console.log(users);
   const [searchName, setsearchName] = useState("");
